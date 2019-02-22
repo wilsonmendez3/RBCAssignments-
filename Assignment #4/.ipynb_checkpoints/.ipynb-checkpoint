@@ -1,0 +1,507 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n",
+    "import numpy as np\n",
+    "import csv "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "FileNotFoundError",
+     "evalue": "File b'Resources/purchase_data.csv' does not exist",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[0;31mFileNotFoundError\u001b[0m                         Traceback (most recent call last)",
+      "\u001b[0;32m<ipython-input-5-7ada8cd31c0a>\u001b[0m in \u001b[0;36m<module>\u001b[0;34m\u001b[0m\n\u001b[1;32m      1\u001b[0m \u001b[0mfile\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0;34m\"Resources/purchase_data.csv\"\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      2\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----> 3\u001b[0;31m \u001b[0mpymoli_df\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mpd\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mread_csv\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mfile\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mlow_memory\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;32mFalse\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      4\u001b[0m \u001b[0mpymoli_df\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mhead\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;32m~/anaconda3/lib/python3.7/site-packages/pandas/io/parsers.py\u001b[0m in \u001b[0;36mparser_f\u001b[0;34m(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, escapechar, comment, encoding, dialect, tupleize_cols, error_bad_lines, warn_bad_lines, skipfooter, doublequote, delim_whitespace, low_memory, memory_map, float_precision)\u001b[0m\n\u001b[1;32m    676\u001b[0m                     skip_blank_lines=skip_blank_lines)\n\u001b[1;32m    677\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--> 678\u001b[0;31m         \u001b[0;32mreturn\u001b[0m \u001b[0m_read\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mfilepath_or_buffer\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mkwds\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    679\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    680\u001b[0m     \u001b[0mparser_f\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m__name__\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mname\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;32m~/anaconda3/lib/python3.7/site-packages/pandas/io/parsers.py\u001b[0m in \u001b[0;36m_read\u001b[0;34m(filepath_or_buffer, kwds)\u001b[0m\n\u001b[1;32m    438\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    439\u001b[0m     \u001b[0;31m# Create the parser.\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--> 440\u001b[0;31m     \u001b[0mparser\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mTextFileReader\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mfilepath_or_buffer\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m**\u001b[0m\u001b[0mkwds\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    441\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    442\u001b[0m     \u001b[0;32mif\u001b[0m \u001b[0mchunksize\u001b[0m \u001b[0;32mor\u001b[0m \u001b[0miterator\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;32m~/anaconda3/lib/python3.7/site-packages/pandas/io/parsers.py\u001b[0m in \u001b[0;36m__init__\u001b[0;34m(self, f, engine, **kwds)\u001b[0m\n\u001b[1;32m    785\u001b[0m             \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0moptions\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;34m'has_index_names'\u001b[0m\u001b[0;34m]\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mkwds\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;34m'has_index_names'\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    786\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--> 787\u001b[0;31m         \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_make_engine\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mengine\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    788\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    789\u001b[0m     \u001b[0;32mdef\u001b[0m \u001b[0mclose\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;32m~/anaconda3/lib/python3.7/site-packages/pandas/io/parsers.py\u001b[0m in \u001b[0;36m_make_engine\u001b[0;34m(self, engine)\u001b[0m\n\u001b[1;32m   1012\u001b[0m     \u001b[0;32mdef\u001b[0m \u001b[0m_make_engine\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mengine\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;34m'c'\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1013\u001b[0m         \u001b[0;32mif\u001b[0m \u001b[0mengine\u001b[0m \u001b[0;34m==\u001b[0m \u001b[0;34m'c'\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m-> 1014\u001b[0;31m             \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_engine\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mCParserWrapper\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mf\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m**\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0moptions\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m   1015\u001b[0m         \u001b[0;32melse\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1016\u001b[0m             \u001b[0;32mif\u001b[0m \u001b[0mengine\u001b[0m \u001b[0;34m==\u001b[0m \u001b[0;34m'python'\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;32m~/anaconda3/lib/python3.7/site-packages/pandas/io/parsers.py\u001b[0m in \u001b[0;36m__init__\u001b[0;34m(self, src, **kwds)\u001b[0m\n\u001b[1;32m   1706\u001b[0m         \u001b[0mkwds\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;34m'usecols'\u001b[0m\u001b[0;34m]\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0musecols\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1707\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m-> 1708\u001b[0;31m         \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_reader\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mparsers\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mTextReader\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0msrc\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m**\u001b[0m\u001b[0mkwds\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m   1709\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1710\u001b[0m         \u001b[0mpassed_names\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mnames\u001b[0m \u001b[0;32mis\u001b[0m \u001b[0;32mNone\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;32mpandas/_libs/parsers.pyx\u001b[0m in \u001b[0;36mpandas._libs.parsers.TextReader.__cinit__\u001b[0;34m()\u001b[0m\n",
+      "\u001b[0;32mpandas/_libs/parsers.pyx\u001b[0m in \u001b[0;36mpandas._libs.parsers.TextReader._setup_parser_source\u001b[0;34m()\u001b[0m\n",
+      "\u001b[0;31mFileNotFoundError\u001b[0m: File b'Resources/purchase_data.csv' does not exist"
+     ]
+    }
+   ],
+   "source": [
+    "file = \"Resources/purchase_data.csv\" \n",
+    "\n",
+    "pymoli_df = pd.read_csv(file)\n",
+    "pymoli_df.head()\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 116,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Total Players</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>576</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   Total Players\n",
+       "0            576"
+      ]
+     },
+     "execution_count": 116,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "totalplayer = pymoli_df['SN'].value_counts()\n",
+    "totalplayercount = totalplayer.count()\n",
+    "\n",
+    "totalplayer_df = pd.DataFrame({\"Total Players\" : [totalplayercount]})\n",
+    "totalplayer_df\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 118,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Number of unique items : 179\n",
+      "Average Price : 3.050987179487176\n",
+      "Total Purchases : 780\n",
+      "Revenue : 2379.77\n"
+     ]
+    },
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Unique Items</th>\n",
+       "      <th>Average Purchase Price</th>\n",
+       "      <th>Total Purchases</th>\n",
+       "      <th>Revenue</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>179</td>\n",
+       "      <td>3.050987</td>\n",
+       "      <td>780</td>\n",
+       "      <td>2379.77</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   Unique Items  Average Purchase Price  Total Purchases  Revenue\n",
+       "0           179                3.050987              780  2379.77"
+      ]
+     },
+     "execution_count": 118,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "items = pymoli_df['Item Name'].value_counts()\n",
+    "no_items = len(items)\n",
+    "#print(\"Number of unique items : \" + str(no_items))\n",
+    "\n",
+    "avg_price = pymoli_cleandf['Price'].mean()\n",
+    "#print(\"Average Price : \" + str(avg_price))\n",
+    "\n",
+    "total_purchases = pymoli_df['Price'].count()\n",
+    "#print(\"Total Purchases : \" + str(total_purchases))\n",
+    "\n",
+    "revenue = pymoli_df['Price'].sum()\n",
+    "#print(\"Revenue : \" + str(revenue))\n",
+    "\n",
+    "new_df = pd.DataFrame({\"Unique Items\" : [no_items],\n",
+    "                        \"Average Purchase Price\" : [avg_price],\n",
+    "                        \"Total Purchases\" : [total_purchases],\n",
+    "                        \"Revenue\" : [revenue]})\n",
+    "\n",
+    "\n",
+    "new_df"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 264,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Total Count</th>\n",
+       "      <th>Total Percentage</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>Male</th>\n",
+       "      <td>484</td>\n",
+       "      <td>84.03</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>Female</th>\n",
+       "      <td>81</td>\n",
+       "      <td>14.06</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>Nonbinary</th>\n",
+       "      <td>11</td>\n",
+       "      <td>1.91</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "          Total Count Total Percentage\n",
+       "Male              484            84.03\n",
+       "Female             81            14.06\n",
+       "Nonbinary          11             1.91"
+      ]
+     },
+     "execution_count": 264,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "pymoli_cleandf = pymoli_df.drop_duplicates(subset=[\"SN\", \"Gender\"], keep=\"first\")\n",
+    "\n",
+    "gender = pymoli_cleandf['Gender'].value_counts()\n",
+    "gender_d = dict(gender)\n",
+    "gendercount = pymoli_cleandf['Gender'].count()\n",
+    "\n",
+    "malecount_cl = gender_d['Male']\n",
+    "maleperc = (malecount_cl / gendercount)\n",
+    "maleperc = maleperc * 100\n",
+    "maleperc = round(maleperc, 2)\n",
+    "\n",
+    "femalecount_cl = gender_d['Female']\n",
+    "femaleperc = (femalecount_cl / gendercount) * 100\n",
+    "femaleperc = round(femaleperc, 2)\n",
+    "\n",
+    "nonbincount_cl = gender_d['Other / Non-Disclosed']\n",
+    "nonbinperc = nonbincount_cl / gendercount\n",
+    "nonbinperc = nonbinperc * 100 \n",
+    "nonbinperc = round(nonbinperc, 2)\n",
+    "\n",
+    "\n",
+    "genderlist = [ (str(malecount_cl), str(maleperc)),\n",
+    "             (str(femalecount_cl), str(femaleperc)) ,\n",
+    "             (str(nonbincount_cl), str(nonbinperc) )]\n",
+    "\n",
+    "dfGender = pd.DataFrame(genderlist, columns = ['Total Count' , 'Total Percentage',], index=['Male', 'Female', 'Nonbinary'])\n",
+    "dfGender\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 190,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "3.0178527607361953\n",
+      "1967.6399999999994\n"
+     ]
+    }
+   ],
+   "source": [
+    "#PURCHASE COUNT BY GENDER\n",
+    "purchasecount = pymoli_df['Gender'].value_counts()\n",
+    "purchasecount_d = dict(purchasecount)\n",
+    "#purchasecount = pymoli_df['Price'].count()\n",
+    "\n",
+    "malecount = purchasecount_d['Male']\n",
+    "femalecount= purchasecount_d['Female']\n",
+    "nonbincount = purchasecount_d['Other / Non-Disclosed']\n",
+    "\n",
+    "#PURCHASE\n",
+    "sumofgender = pymoli_df.groupby('Gender')['Price'].sum()\n",
+    "sumofgender_d = dict(sumofgender)\n",
+    "\n",
+    "malesum = sumofgender_d['Male']\n",
+    "femalesum = sumofgender_d['Female']\n",
+    "nonbinsum = sumofgender_d['Other / Non-Disclosed']\n",
+    "\n",
+    "avg_pricemale = malesum / malecount \n",
+    "avg_pricefemale = femalesum / femalecount\n",
+    "avg_pricenon = nonbinsum / nonbincount\n",
+    "\n",
+    "#print(purchase)\n",
+    "print(avg_pricemale)\n",
+    "print(malesum)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 248,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# totalplayer = pymoli_df.groupby(['Gender'])['SN'].value_counts()\n",
+    "# totalplayer_d = dict(totalplayer)\n",
+    "# #totalplayercount = totalplayer.groupby['Gender')\n",
+    "# #print(totalplayer_d['Female'])\n",
+    "# # print(totalplayer_d[('Female', 'Chamjask73')])\n",
+    "\n",
+    "# totalplayer_dval = totalplayer_d.values()\n",
+    "# #print(totalplayer_dval)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 251,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "{'Female': 361.93999999999966, 'Male': 1967.6399999999994, 'Other / Non-Disclosed': 50.190000000000005}\n"
+     ]
+    }
+   ],
+   "source": [
+    "# sumpppg = pymoli_df.groupby('Gender')['Price'].sum()\n",
+    "# sumpppg_d = dict(sumpppg)\n",
+    "# #totalplayercount = totalplayer.groupby['Gender')\n",
+    "# #print(sumpppg_d[('Female', 'Chamjask73')])\n",
+    "\n",
+    "# #sumpppg_dval = sumpppg_d.values()\n",
+    "# print(sumpppg_d)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 265,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# avg_purchase_total_by_gender = []\n",
+    "# for count_purchases in totalplayer_dval:\n",
+    "#     for total_purchases in sumpppg_dval:\n",
+    "#         avg_purchase_total_by_gender.append(total_purchases / count_purchases)\n",
+    "        \n",
+    "#print(avg_purchase_total_by_gender)\n",
+    "\n",
+    "\n",
+    "male_avgpurch = malesum / malecount_cl\n",
+    "female_avgpurch = femalesum / femalecount_cl\n",
+    "nonbin_avgpurch = nonbinsum / nonbincount_cl"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 266,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Purchase Count</th>\n",
+       "      <th>Average Purchase Price</th>\n",
+       "      <th>Total Purchase Value</th>\n",
+       "      <th>Avg Total Purchase per Person</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>Male</th>\n",
+       "      <td>652</td>\n",
+       "      <td>3.0178527607361953</td>\n",
+       "      <td>1967.6399999999994</td>\n",
+       "      <td>4.065371900826445</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>Female</th>\n",
+       "      <td>113</td>\n",
+       "      <td>3.203008849557519</td>\n",
+       "      <td>361.93999999999966</td>\n",
+       "      <td>4.4683950617283905</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>Nonbinary</th>\n",
+       "      <td>15</td>\n",
+       "      <td>3.3460000000000005</td>\n",
+       "      <td>50.190000000000005</td>\n",
+       "      <td>4.562727272727273</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "          Purchase Count Average Purchase Price Total Purchase Value  \\\n",
+       "Male                 652     3.0178527607361953   1967.6399999999994   \n",
+       "Female               113      3.203008849557519   361.93999999999966   \n",
+       "Nonbinary             15     3.3460000000000005   50.190000000000005   \n",
+       "\n",
+       "          Avg Total Purchase per Person  \n",
+       "Male                  4.065371900826445  \n",
+       "Female               4.4683950617283905  \n",
+       "Nonbinary             4.562727272727273  "
+      ]
+     },
+     "execution_count": 266,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "PurchAnal = [ (str(malecount), str(avg_pricemale), str(malesum), str(male_avgpurch)) ,\n",
+    "             (str(femalecount), str(avg_pricefemale), str(femalesum), str(female_avgpurch)) ,\n",
+    "             (str(nonbincount), str(avg_pricenon), str(nonbinsum), str(nonbin_avgpurch))]\n",
+    "\n",
+    "PurchAnal_df = pd.DataFrame(PurchAnal, columns = ['Purchase Count', 'Average Purchase Price','Total Purchase Value', 'Avg Total Purchase per Person',], index=['Male', 'Female', 'Nonbinary'])\n",
+    "PurchAnal_df"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Age \n",
+    "\n",
+    "bins = [0, 10, 15, 20, 25, 30, 35, 40, 45]\n",
+    "names = ['<10', '10-14', '15-19', '20-24', '24-29', '30-34', '35-39', '40+']\n",
+    "\n",
+    "pymoli_test = pymoli_df.groupby(pd.cut(pymoli_df['Age'], bins, labels=names))['SN'].count()\n",
+    "pymoli_test"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.7.1"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
