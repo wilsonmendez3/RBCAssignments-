@@ -1,0 +1,6 @@
+Pymaceuticals
+---------------------------------------------
+# Observation 1: Capomulin performs the best out of the 4 samples because there is tumor reduction. 
+# Observation 2: The Placebo drug is as ineffective as Infubinol and Ketapril 
+# Observation 3: Of the selected sample size, Ketapril was the most unproductive Drug for Volume change 
+---------------------------------------------
