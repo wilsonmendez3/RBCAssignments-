@@ -1,0 +1,4 @@
+Three observable trends: 
+    1. There is a cubic linear regression in the Latitude vs Temperature scatterplot. According to this plot, countries with lower latitudes are hotter, or higher in Fahrenheit.
+    2. According to the Humidity vs Latitude scatterplot, there is a higher concentration of Humidity levels closer to the Latitude of 0.  
+    3. Windspeed data is more concentrated in higher latitude levels according to the Windspeed vs Latitude scatterplot. 
